@@ -16,7 +16,8 @@ else
 fi
 
 echo "---Starting...---"
-chown -R ${UID}:${GID} /mnt
+chown -R ${UID} /tmp
+chown ${UID}:${GID} /mnt
 chown -R ${UID}:${GID} /opt/scripts
 chown -R ${UID}:${GID} ${DATA_DIR}
 
