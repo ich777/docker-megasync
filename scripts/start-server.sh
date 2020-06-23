@@ -6,6 +6,9 @@ echo "---Checking for old logfiles---"
 find $DATA_DIR -name "XvfbLog.*" -exec rm -f {} \;
 find $DATA_DIR -name "x11vncLog.*" -exec rm -f {} \;
 echo "---Checking for old display lock files---"
+if [ ! -d "${DATA_DIR}/.local/share/data/Mega Limited/MEGAsync" ]; then
+    mkdir -p "${DATA_DIR}/.local/share/data/Mega Limited/MEGAsync"
+fi
 find /tmp -name ".X99*" -exec rm -f {} \; > /dev/null 2>&1
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
@@ -20,4 +23,5 @@ websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5
 sleep 2
 
 sleep infinity
+export DISPLAY=:99
 megasync
