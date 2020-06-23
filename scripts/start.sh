@@ -16,7 +16,6 @@ else
 fi
 
 echo "---Starting...---"
-chown -R ${UID} /tmp
 chown -R ${UID}:${GID} /mnt
 chown -R ${UID}:${GID} ${DATA_DIR}
 
