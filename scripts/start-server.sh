@@ -1,8 +1,10 @@
 #!/bin/bash
-sleep infinity
 export XDG_RUNTIME_DIR=/tmp
 
 echo "---Preparing Server---"
+if [ ! -d "${DATA_DIR}/.local/share/data/Mega Limited/MEGAsync" ]; then
+    mkdir -p "${DATA_DIR}/.local/share/data/Mega Limited/MEGAsync"
+fi
 echo "---Checking for old logfiles---"
 find $DATA_DIR -name "XvfbLog.*" -exec rm -f {} \;
 find $DATA_DIR -name "x11vncLog.*" -exec rm -f {} \;
@@ -20,6 +22,6 @@ echo "---Starting noVNC server---"
 websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5900
 sleep 2
 
-
+sleep infinity
 export DISPLAY=:99
 megasync
