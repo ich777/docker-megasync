@@ -17,6 +17,7 @@ fi
 
 echo "---Starting...---"
 chown -R ${UID}:${GID} /mnt
+chown -R ${UID}:${GID} /opt/scripts
 chown -R ${UID}:${GID} ${DATA_DIR}
 
 term_handler() {
@@ -26,7 +27,7 @@ term_handler() {
 }
 
 trap 'kill ${!}; term_handler' SIGTERM
-/opt/scripts/start-server.sh &
+su ${USER} -c "/opt/scripts/start-server.sh" &
 killpid="$!"
 while true
 do
