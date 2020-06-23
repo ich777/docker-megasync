@@ -19,7 +19,6 @@ RUN mkdir $DATA_DIR && \
 
 ADD /scripts/ /opt/scripts/
 RUN chmod -R 770 /opt/scripts/
-COPY /config.json /tmp/config.json
 
 EXPOSE 8080
 
