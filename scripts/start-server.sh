@@ -1,4 +1,5 @@
 #!/bin/bash
+sleep infinity
 export XDG_RUNTIME_DIR=/tmp
 
 echo "---Preparing Server---"
@@ -19,6 +20,6 @@ echo "---Starting noVNC server---"
 websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5900
 sleep 2
 
-sleep infinity
+
 export DISPLAY=:99
 megasync
