@@ -16,17 +16,8 @@ else
 fi
 
 echo "---Starting...---"
-chown -R ${UID}:${GID} /opt/scripts
-if [ ! -d /mnt/downloads ]; then
-	mkdir -p /mnt/downloads
-fi
-if [ ! -d "${DATA_DIR}/.config/Deezloader Remix" ]; then
-	mkdir -p "${DATA_DIR}/.config/Deezloader Remix"
-fi
-if [ ! -f "${DATA_DIR}/.config/Deezloader Remix/config.json" ]; then
-	cp /tmp/config.json "${DATA_DIR}/.config/Deezloader Remix/config.json"
-fi
-chown -R ${UID}:${GID} /mnt/downloads
+chown -R ${UID} /tmp
+chown -R ${UID}:${GID} /mnt
 chown -R ${UID}:${GID} ${DATA_DIR}
 
 term_handler() {
@@ -34,7 +25,6 @@ term_handler() {
 	wait "$killpid" -f 2>/dev/null
 	exit 143;
 }
-
 
 trap 'kill ${!}; term_handler' SIGTERM
 su ${USER} -c "/opt/scripts/start-server.sh" &
