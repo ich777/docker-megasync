@@ -1,11 +1,20 @@
-FROM ich777/debian-baseimage
+FROM ich777/novnc-baseimage
 
 LABEL maintainer="admin@minenet.at"
 
-RUN apt-get update && \
-	rm -rf /var/lib/apt/lists/*
+RUN export TZ=Europe/Rome && \
+	apt-get update && \
+	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+	echo $TZ > /etc/timezone && \
+	apt-get update && \
+	rm -rf /var/lib/apt/lists/* && \
+	sed -i '/    document.title =/c\    document.title = "Mega.nz - noVNC";' /usr/share/novnc/app/ui.js && \
+	rm /usr/share/novnc/app/images/icons/*
+
 
 ENV DATA_DIR="/meganz"
+ENV CUSTOM_RES_W=1280
+ENV CUSTOM_RES_H=1024
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
