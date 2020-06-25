@@ -15,14 +15,14 @@ RUN export TZ=Europe/Rome && \
 	sed -i '/    document.title =/c\    document.title = "Mega.nz - noVNC";' /usr/share/novnc/app/ui.js && \
 	rm /usr/share/novnc/app/images/icons/*
 
-ENV DATA_DIR="/meganz"
+ENV DATA_DIR="/megasync"
 ENV CUSTOM_RES_W=750
 ENV CUSTOM_RES_H=550
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
 ENV DATA_PERM=770
-ENV USER="mega"
+ENV USER="megasync"
 
 RUN mkdir $DATA_DIR && \
 	useradd -d $DATA_DIR -s /bin/bash $USER && \
