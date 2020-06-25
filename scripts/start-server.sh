@@ -23,4 +23,5 @@ websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5
 sleep 2
 
 export DISPLAY=:99
+trayer &
 megasync
