@@ -15,6 +15,9 @@ else
 	echo "---No optional script found, continuing---"
 fi
 
+echo "---Checking configuration for noVNC---"
+novnccheck
+
 echo "---Starting...---"
 chown -R ${UID} /tmp
 chown ${UID}:${GID} /mnt
