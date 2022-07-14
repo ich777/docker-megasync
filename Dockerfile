@@ -37,6 +37,7 @@ RUN mkdir $DATA_DIR && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
+COPY /conf/ /etc/.fluxbox/
 RUN chmod -R 770 /opt/scripts/
 
 EXPOSE 8080
