@@ -3,10 +3,12 @@ FROM ich777/novnc-baseimage
 LABEL org.opencontainers.image.authors="admin@minenet.at"
 LABEL org.opencontainers.image.source="https://github.com/ich777/docker-megasync"
 
+ARG MEGASYNC_CLIENT_VERSION="4.6.3-5.1"
+
 RUN export TZ=Europe/Rome && \
 	apt-get update && \
 	apt-get -y install fontconfig libc-ares2 libcrypto++ libcurl3-gnutls libdouble-conversion3 libegl-mesa0 libegl1 libevdev2 libgbm1 libgomp1 libgraphite2-3 libgssapi-krb5-2 libgudev-1.0-0 libharfbuzz0b libicu67 libinput-bin libinput10 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.4-2 libldap-common libmediainfo0v5 libmms0 libmtdev1 libnghttp2-14 libpcre2-16-0 libqt5core5a libqt5dbus5 libqt5gui5 libqt5network5 libqt5svg5 libqt5widgets5 libraw20 librtmp1 libsasl2-2 libsasl2-modules-db libssh2-1 libtinyxml2-8 libwacom-common libwacom2 libwayland-client0 libwayland-server0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-render0 libxcb-shape0 libxcb-util1 libxcb-xfixes0 libxcb-xinerama0 libxcb-xkb1 libxkbcommon-x11-0 libxkbcommon0 libzen0v5 trayer libqt5x11extras5 && \
-	wget -q -nc --show-progress --progress=bar:force:noscroll -O MegaSync.deb https://mega.nz/linux/MEGAsync/Debian_11/amd64/megasync_4.6.3-5.1_amd64.deb && \
+	wget -q -nc --show-progress --progress=bar:force:noscroll -O MegaSync.deb https://mega.nz/linux/MEGAsync/Debian_11/amd64/megasync_${MEGASYNC_CLIENT_VERSION}_amd64.deb && \
 	dpkg -i MegaSync.deb && \
 	apt-get -y --no-install-recommends -f install && \
 	rm MegaSync.deb && \
