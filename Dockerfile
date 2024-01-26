@@ -3,7 +3,7 @@ FROM ich777/novnc-baseimage
 LABEL org.opencontainers.image.authors="admin@minenet.at"
 LABEL org.opencontainers.image.source="https://github.com/ich777/docker-megasync"
 
-ARG MEGASYNC_CLIENT_VERSION="4.9.6-1.1"
+ARG MEGASYNC_CLIENT_VERSION="4.11.0-3.1"
 ARG DEBIAN_V="12"
 
 RUN export TZ=Europe/Rome && \
