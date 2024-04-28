@@ -3,13 +3,14 @@ FROM ich777/novnc-baseimage
 LABEL org.opencontainers.image.authors="admin@minenet.at"
 LABEL org.opencontainers.image.source="https://github.com/ich777/docker-megasync"
 
-ARG MEGASYNC_CLIENT_VERSION="5.2.0-2.1"
 ARG DEBIAN_V="12"
 
 RUN export TZ=Europe/Rome && \
 	apt-get update && \
-	apt-get -y install gpg fontconfig libc-ares2 libcrypto++ libcurl3-gnutls libdouble-conversion3 libegl-mesa0 libegl1 libevdev2 libgbm1 libgomp1 libgraphite2-3 libgssapi-krb5-2 libgudev-1.0-0 libharfbuzz0b libicu72 libinput-bin libinput10 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 libldap-common libmediainfo0v5 libmms0 libmtdev1 libnghttp2-14 libpcre2-16-0 libqt5core5a libqt5dbus5 libqt5gui5 libqt5network5 libqt5svg5 libqt5widgets5 libraw20 librtmp1 libsasl2-2 libsasl2-modules-db libssh2-1 libtinyxml2-9 libwacom-common libwacom9 libwayland-client0 libwayland-server0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-render0 libxcb-shape0 libxcb-util1 libxcb-xfixes0 libxcb-xinerama0 libxcb-xkb1 libxkbcommon-x11-0 libxkbcommon0 libzen0v5 libqt5x11extras5 libssl3 qml-module-qtquick-controls2 && \
-	wget -q -nc --show-progress --progress=bar:force:noscroll -O /tmp/MegaSync.deb https://mega.nz/linux/repo/Debian_${DEBIAN_V}/amd64/megasync_${MEGASYNC_CLIENT_VERSION}_amd64.deb && \
+	apt-get -y install gpg fontconfig libc-ares2 libcrypto++ libcurl3-gnutls libdouble-conversion3 libegl-mesa0 libegl1 libevdev2 libgbm1 libgomp1 libgraphite2-3 libgssapi-krb5-2 libgudev-1.0-0 libharfbuzz0b libicu72 libinput-bin libinput10 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.5-0 libldap-common libmediainfo0v5 libmms0 libmtdev1 libnghttp2-14 libpcre2-16-0 libqt5core5a libqt5dbus5 libqt5gui5 libqt5network5 libqt5svg5 libqt5widgets5 libraw20 librtmp1 libsasl2-2 libsasl2-modules-db libssh2-1 libtinyxml2-9 libwacom-common libwacom9 libwayland-client0 libwayland-server0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-render0 libxcb-shape0 libxcb-util1 libxcb-xfixes0 libxcb-xinerama0 libxcb-xkb1 libxkbcommon-x11-0 libxkbcommon0 libzen0v5 libqt5x11extras5 libssl3 qml-module-qtquick-controls2
+
+RUN	MEGA_V=$(wget -qO- https://mega.nz/linux/repo/${DEBIAN_V}/amd64/ | grep '"megasync_.*_amd64.deb"' | cut -d '_' -f2) && \
+	wget -q -nc --show-progress --progress=bar:force:noscroll -O /tmp/MegaSync.deb https://mega.nz/linux/repo/Debian_${DEBIAN_V}/amd64/megasync_${MEGA_V}_amd64.deb && \
 	apt-get -y install --no-install-recommends /tmp/MegaSync.deb && \
 	rm -f /tmp/MegaSync.deb && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
