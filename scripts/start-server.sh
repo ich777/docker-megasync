@@ -1,7 +1,7 @@
 #!/bin/bash
 export DISPLAY=:99
 export XAUTHORITY=${DATA_DIR}/.Xauthority
-export XDG_RUNTIME_DIR=/tmp
+export XDG_RUNTIME_DIR=/tmp/xdg
 
 echo "---Preparing Server---"
 if [ ! -d "${DATA_DIR}/.local/share/data/Mega Limited/MEGAsync" ]; then
@@ -13,6 +13,10 @@ find $DATA_DIR -name "x11vncLog.*" -exec rm -f {} \;
 echo "---Checking for old display lock files---"
 rm -rf /tmp/.X99*
 rm -rf /tmp/.X11*
+if [ ! -d /tmp/xdg ]; then
+  mkdir -p /tmp/xdg
+fi
+chmod -R 0700 /tmp/xdg
 rm -rf ${DATA_DIR}/.vnc/*.log ${DATA_DIR}/.vnc/*.pid
 chmod -R ${DATA_PERM} ${DATA_DIR}
 if [ -f ${DATA_DIR}/.vnc/passwd ]; then
