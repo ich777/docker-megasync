@@ -1,4 +1,5 @@
 # DEPRECATED
+### Please try `rclone` as an alternative to this container: [rclone Homepage](https://rclone.org/)
 
 # MEGASync in Docker optimized for Unraid
 MEGAsync is an intuitive application that enables you to effortlessly synchronize folders on several computers. You simply need to upload data in the cloud and, within seconds, you can explore the same documents on your own PC.
